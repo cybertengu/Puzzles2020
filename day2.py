@@ -4,13 +4,16 @@ def SolveDay2(filePath):
     with open(filePath, 'r') as file:
         for line in file:
             passwords.append(line)
+
     SolveDay2A(passwords)
     SolveDay2B(passwords)
 
 def SolveDay2A(passwords):
     validPasswordsCount = 0
+
     for currentLine in enumerate(passwords):
         tokens = currentLine[1].split()
+        limits = tokens[0].split('-')
         minValue = int(limits[0])
         maxValue = int(limits[1])
         letter = tokens[1][:-1]
