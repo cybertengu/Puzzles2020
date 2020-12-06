@@ -5,9 +5,9 @@ def SolveDay5(filePath):
     maxRowValue = 127
     maxColumnValue = 7
 
-    #TestSorting()
+    #TestSorting() # This failed horribly. I will leave it in for all to learn how to not do a sort.
 
-    #SolveDay5A(testDataList, maxRowValue, maxColumnValue)
+    SolveDay5A(testDataList, maxRowValue, maxColumnValue)
     SolveDay5B(testDataList, maxRowValue, maxColumnValue)
     print("End of day 5.")
 
@@ -20,23 +20,13 @@ def SolveDay5A(testDataList, maxRowValue, maxColumnValue):
         if len(element) < 10:
             print("This should never happened. Might be a bug in the parser logic.")
             break
-        #print(element)
+
         rowInformation = element[0:7]
         columnInformation = element[7:10]
-        #print("row: ", rowInformation, " column: ", columnInformation)
         
-        #print("start Row")
         rowId = GetId(rowRoot, rowInformation, 0)
-        #print('Row id', rowId)
-        #print("end Row")
-        #print("start Column")
         columnId = GetId(columnRoot, columnInformation, 0)
-        #print('Column id: ', columnId)
-        #print("end Column")
-        #print("row: ", rowInformation, " column: ", columnInformation)
-        #print('row', rowId, 'column', columnId)
         seatId = rowId * 8 + columnId
-        print("row ", rowId, " column ", columnId, " seat ID ", seatId)
         
         if highestSeatId < seatId:
             highestSeatId = seatId
@@ -57,6 +47,7 @@ def SolveDay5B(testDataList, maxRowValue, maxColumnValue):
         if len(element) < 10:
             print("This should never happened. Might be a bug in the parser logic.")
             break
+        
         rowInformation = element[0:7]
         columnInformation = element[7:10]
         
@@ -64,15 +55,13 @@ def SolveDay5B(testDataList, maxRowValue, maxColumnValue):
         columnId = GetId(columnRoot, columnInformation, 0)
         seatId = rowId * 8 + columnId
         seatIds.append(seatId)
-        #print("row ", rowId, " column ", columnId, " seat ID ", seatId)
     
     seatIds.sort()
-    #print(seatIds)
-
     missingNumbers = [x for x in range(seatIds[0], seatIds[-1]+1) if x not in seatIds] 
     print(missingNumbers[0])
     print("End of day 5 B.")
 
+# Need to reproduce the complex list that the input from day 5 that caused this sort logic I created to fail.
 def TestSorting():
     sortedList = []
     InsertIntoSortedList(sortedList, 5)
@@ -84,6 +73,7 @@ def TestSorting():
     
     print(sortedList)
 
+# This failed horribly. I will leave this code to show I still have a lot to learn.
 def InsertIntoSortedList(sortedList, value):
     size = len(sortedList)
     if size == 0:
@@ -123,12 +113,8 @@ def InsertIntoSortedList(sortedList, value):
             else:
                 index = int(index + (index / 2))
         print(priorElement, ' ', element, ' ', nextElement, ' index: ', index)
-# 13
-# 1 2 3 4 6
-# 1 3 5 7
-# 2
-# 1 5 8
     return sortedList
+
 # Logic of what I think will happen.
 #FBF
 #FBF. Start with F, left node created with (0, 3). Go on left node with BF. 
@@ -147,31 +133,22 @@ def GetId(root, seat, value):
         return root.minValue 
     
     firstLetter = seat[0]
-    #print(firstLetter)
     
     if firstLetter == 'F' or firstLetter == 'L':
         if root.left is None:
-            #print('min value: ', root.minValue, ' max value: ', root.maxValue)
             newStartMaxValue = (1 + root.maxValue - root.minValue) / 2 + root.minValue
             root.left = Node(root.minValue, newStartMaxValue - 1)
-            #print(newStartMaxValue, " and added left node.")
         if len(seat) > 1:
-            #print("go left")
             value = GetId(root.left, seat[1:], value)
         else:
-            #print('did this run? ', root.minValue)
             value = GetId(root.left, '', value)
     elif firstLetter == 'B' or firstLetter == 'R':
         if root.right is None:
-            #print('min value: ', root.minValue, ' max value: ', root.maxValue)
             newStartMaxValue = (1 + root.maxValue - root.minValue) / 2 + root.minValue
             root.right = Node(newStartMaxValue, root.maxValue)
-            #print(newStartMaxValue, " and added right node.")
         if len(seat) > 1:
-            #print("go right")
             value = GetId(root.right, seat[1:], value)
         else:
-            #print('did this run 2? ', root.minValue)
             value = GetId(root.right, '', value)
     return int(value)
 
@@ -190,4 +167,3 @@ class Node:
 # B means 44 - 47
 # F means 44 - 45
 # F means 44
-
