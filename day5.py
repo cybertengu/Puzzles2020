@@ -5,8 +5,6 @@ def SolveDay5(filePath):
     maxRowValue = 127
     maxColumnValue = 7
 
-    #TestSorting() # This failed horribly. I will leave it in for all to learn how to not do a sort.
-
     SolveDay5A(testDataList, maxRowValue, maxColumnValue)
     SolveDay5B(testDataList, maxRowValue, maxColumnValue)
     print("End of day 5.")
@@ -60,60 +58,6 @@ def SolveDay5B(testDataList, maxRowValue, maxColumnValue):
     missingNumbers = [x for x in range(seatIds[0], seatIds[-1]+1) if x not in seatIds] 
     print(missingNumbers[0])
     print("End of day 5 B.")
-
-# Need to reproduce the complex list that the input from day 5 that caused this sort logic I created to fail.
-def TestSorting():
-    sortedList = []
-    InsertIntoSortedList(sortedList, 5)
-    InsertIntoSortedList(sortedList, 10)
-    InsertIntoSortedList(sortedList, 16)
-    InsertIntoSortedList(sortedList, 4)
-    InsertIntoSortedList(sortedList, 7)
-    InsertIntoSortedList(sortedList, 9)
-    
-    print(sortedList)
-
-# This failed horribly. I will leave this code to show I still have a lot to learn.
-def InsertIntoSortedList(sortedList, value):
-    size = len(sortedList)
-    if size == 0:
-        sortedList.append(value)
-        return sortedList
-
-    lastElement = sortedList[-1]
-    firstElement = sortedList[0]
-    if value < firstElement:
-        sortedList.insert(0, value)
-        return
-    elif value > lastElement:
-        sortedList.append(value)
-        return
-
-    isInserted = False
-    index = int(size / 2)
-    print(index)
-    offset = index
-
-    while not isInserted:
-        priorIndex = index
-        element = sortedList[index]
-        priorElement = sortedList[index - 1]
-        nextElement = sortedList[index + 1]
-        if value < element:
-            if value > priorElement:
-                isInserted = True
-                sortedList.insert(index, value)
-            else:
-                offset = int(offset / 2)
-                index = int(index - (index / 2))
-        elif value > element:
-            if value < nextElement:
-                isInserted = True
-                sortedList.insert(index + 1, value)
-            else:
-                index = int(index + (index / 2))
-        print(priorElement, ' ', element, ' ', nextElement, ' index: ', index)
-    return sortedList
 
 # Logic of what I think will happen.
 #FBF
