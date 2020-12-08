@@ -4,7 +4,7 @@ from day3 import SolveDay3
 from day4 import SolveDay4
 from day5 import SolveDay5
 from day6 import SolveDay6
-#from day7 import SolveDay7
+from day7 import SolveDay7
 #from day8 import SolveDay8
 #from day9 import SolveDay9
 #from day10 import SolveDay10
@@ -24,13 +24,16 @@ from day6 import SolveDay6
 #from day24 import SolveDay24
 #from day25 import SolveDay25
 
-SolveDay1()
-SolveDay2("day2A.txt")
+#SolveDay1()
+#SolveDay2("day2A.txt")
 #SolveDay3("day3Test.txt")
-SolveDay3("day3A.txt")
-SolveDay4()
+#SolveDay3("day3A.txt")
+#SolveDay4()
 #SolveDay5("testday5.txt")
-SolveDay5("day5.txt")
-SolveDay6("day6.txt")
+#SolveDay5("day5.txt")
+#SolveDay6("day6.txt")
+#SolveDay7("day7test.txt")
+#SolveDay7("day7test2.txt")
+SolveDay7("day7.txt")
 
 print("Finished running.")
