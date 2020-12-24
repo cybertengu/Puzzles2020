@@ -15,7 +15,7 @@ from day14 import SolveDay14
 from day15 import SolveDay15
 from day16 import SolveDay16
 #from day17 import SolveDay17
-#from day18 import SolveDay18
+from day18 import SolveDay18
 #from day19 import SolveDay19
 #from day20 import SolveDay20
 #from day21 import SolveDay21
@@ -65,6 +65,8 @@ from day16 import SolveDay16
 #SolveDay15('day15test7.txt')
 #SolveDay15('day15test8.txt')
 #SolveDay15('day15.txt')
-SolveDay16('day16.txt')
+#SolveDay16('day16.txt')
+#SolveDay17('day17.txt')
+SolveDay18('day18.txt')
 
 print("Finished running.")
